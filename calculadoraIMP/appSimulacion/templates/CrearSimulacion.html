@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %} 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
+    <title>Crear simulación</title>
+</head>
+<body class="fondo">
+    <div class="container">
+        <h3>Crear simulación</h3>
+        <hr>
+        <!-- Formulario de ingreso -->
+        <form id="formAgregar"action="calcular_pedido" method="POST" class="formulario-con-relieve">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="cant_producto" class="form-label">Nombre artículo</label>
+                <input type="text" class="form-control" id="nombre_articulo" name="nombre_articulo" required>
+                <div id="nom_articulo_help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="cant_producto" class="form-label">Cantidad Unidad</label>
+                <input type="number" class="form-control" id="cantidad_unidades" name="cantidad_unidades" required>
+                <div id="cant_producto_help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="costo_unitario" class="form-label">Costo unitario (USD)</label>
+                <input type="number" class="form-control" id="costo_unitario" name="costo_unitario" step="0.01" required>
+                <div id="costo_unitario_help" class="form-text"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="codigo_articulo" class="form-label">Código artículo</label>
+                <input type="text" class="form-control" id="codigo_articulo" name="codigo_articulo" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nombre_proveedor" class="form-label">Nombre proveedor</label>
+                <input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="costo_envio_chile" class="form-label">Costo envío a Chile (USD)</label>
+                <input type="number" class="form-control" id="costo_envio_chile" name="costo_envio_usd" step="0.01" required>
+                <div id="costo_envio_chile_help" class="form-text"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"  id="calcularBtn">Calcular Costo de Importación</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const formAgregar = document.getElementById("formAgregar");
+        const nombreArticuloInput = document.getElementById("nombre_articulo");
+        const cantidadUnidadesInput = document.getElementById("cantidad_unidades");
+        const costoUnitarioInput = document.getElementById("costo_unitario");
+        const codigoArticuloInput = document.getElementById("codigo_articulo");
+        const nombreProveedorInput = document.getElementById("nombre_proveedor");
+        const costoEnvioChileInput = document.getElementById("costo_envio_chile");
+        const calcularBtn = document.getElementById("calcularBtn");
+        //evento click al botón
+        calcularBtn.addEventListener("click", function (event) {
+            const nombreArticuloValue = nombreArticuloInput.value;
+            const cantidadUnidadesValue = parseFloat(cantidadUnidadesInput.value);
+            const costoUnitarioValue = parseFloat(costoUnitarioInput.value);
+            const costoEnvioChileValue = parseFloat(costoEnvioChileInput.value);
+
+            const allowedCharacters = /^[A-Za-z0-9\s&.-]+$/; //  para permitir letras, números, &, -, puntos y espacios
+            const codeArticuloCharacters = /^[A-Za-z0-9]+$/; // para permitir solo letras y números
+
+            // Validación de campos vacíos
+            if (nombreArticuloValue.trim() === "" ||
+                codigoArticuloInput.value.trim() === "" ||
+                nombreProveedorInput.value.trim() === "") {
+                alert("Ningún campo puede quedar vacío.");
+                event.preventDefault();
+                return;
+            }
+
+            // Validación de Nombre artículo
+            if (!allowedCharacters.test(nombreArticuloValue)) {
+                alert("El nombre del artículo solo debe contener letras, números, &, -, puntos y espacios.");
+                event.preventDefault();
+                return;
+            }
+
+             // Validación de campos numéricos
+            if (isNaN(cantidadUnidadesValue) || isNaN(costoUnitarioValue) || isNaN(costoEnvioChileValue) ||
+            cantidadUnidadesValue <= 0 || costoUnitarioValue <= 0 || costoEnvioChileValue <= 0) {
+            alert("Los campos numéricos deben ser números y no letras y mayores a 0.");
+            event.preventDefault();
+            return;
+            }
+
+            // Validación de Código artículo
+            if (!codeArticuloCharacters.test(codigoArticuloInput.value)) {
+                alert("El código de artículo solo debe contener letras y números.");
+                event.preventDefault();
+                return;
+            }
+        });
+    });
+</script>
+</html>
+{% endblock %}

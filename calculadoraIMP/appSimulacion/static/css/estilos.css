@@ -1,0 +1,118 @@
+/* estilos para navbar*/
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar {
+    background-color: dimgray;
+
+}
+
+.container {
+    padding-top: 20px;
+}
+
+.nav-link {
+    color: whitesmoke;
+}
+
+/* estilos para mostra los resultados*/
+.fondo-resultado {
+    background-image: url("/static/img/fondo-mostrar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.cuadro-resaltado {
+    background-color: #cf7878; /* Color de fondo */
+    padding: 20px; /* Espacio interno del contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar relieve */
+
+}
+
+/* estilos para listar las simulaciones de pedidos*/
+    
+#tbl_simulacion {
+        color: rgb(25, 16, 16); /*color para la letras*/
+    }
+
+.fondo-listar {
+    background-image: url("/static/img/fondo-listar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.tabla-con-relieve {
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 0 5px #888;
+
+}
+
+.tabla-con-relieve th, .tabla-con-relieve td {
+    padding: 20px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    
+}
+
+/* estilos para agregar pedidos*/
+.formulario-con-relieve {
+    background-color: #3f73ae;
+    border: 2px solid #ddd; /* Borde */
+    box-shadow: inset 2px 2px 5px #888; /* Sombra hacia adentro */
+    padding: 20px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.fondo {
+    background-image: url("/static/img/fondo-agregar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.mb-3 {
+    color: #000; ;
+}
+
+
+/*estilos para eliminar */
+/* Estilos para el fondo del body */
+.fondo-eliminar {
+    background-image: url("/static/img/fondo-eliminar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+
+/* Estilos para el contenedor del formulario */
+.eliminar-pedido {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Ancho máximo del contenedor */
+    width: 80%; /* Ancho ajustado para adaptarse a la pantalla */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    z-index: 1; /* Asegura que el formulario esté por encima del fondo */
+}
+
+/* estilos para actualizar los pedidos*/
+.form-relieve-actualizar{
+    background-color: #3f73ae;
+    border: 2px solid #ddd; /* Borde */
+    box-shadow: 2px 2px 5px #888; /* Sombra */
+    padding: 20px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.fondo-actualizar {
+    background-image: url("/static/img/fondo-actualizar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
